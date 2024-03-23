@@ -29,7 +29,7 @@ const Livros = () => {
   }
 
   useEffect(() => {
-    getLivros()    
+    getLivros()
   },[])  
 
   return (
