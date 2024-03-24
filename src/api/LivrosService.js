@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://api-desafio-5-dnc.vercel.app";
 
 export class LivrosService{
     static getLivros(){
@@ -12,6 +12,7 @@ export class LivrosService{
     }
 
     static createLivro(body){
+        console.log(body);
         return axios.post(`${BASE_URL}/livros`,body);
     }
 

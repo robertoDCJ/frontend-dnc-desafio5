@@ -11,7 +11,7 @@ const LivrosEdicao = () => {
   const [livro, setLivro] = useState([])
 
   async function getLivro(){
-    const {data} = await LivrosService.getLivro(livroId);
+    const {data} = await LivrosService.getLivro((livroId));
     setLivro(data)
   }
 
