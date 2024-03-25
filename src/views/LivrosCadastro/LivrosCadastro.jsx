@@ -64,8 +64,8 @@ const LivrosCadastro = () => {
               <input type="text" id='editora' required onChange={(event) => { setLivro({ ...livro, editora: event.target.value }) }}></input>
             </div>
             <div className='form-group'>
-              <button onClick={() => {
-                createLivro()
+              <button type='submit' onClick={() => {
+                createLivro(); return false 
               }}>Cadastrar Livro</button>
             </div>
           </form>
