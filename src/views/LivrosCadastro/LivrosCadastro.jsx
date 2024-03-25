@@ -25,7 +25,7 @@ const LivrosCadastro = () => {
         .then((response) => {
           alert(response.data)
           document.getElementById('formulario').reset
-          history.push('/livros')
+          LivrosService.getLivros()
         })
         .catch(({ response: { data, status } }) => {
           alert(`${status} - ${data}`)
