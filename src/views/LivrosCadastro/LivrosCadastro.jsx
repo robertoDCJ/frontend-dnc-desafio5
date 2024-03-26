@@ -20,12 +20,10 @@ const LivrosCadastro = () => {
       editora: livro.editora
     }
 
-    //  && livro.editora !=undefined && livro.editora !='' Está fazendo a função não cadastrar o livro
-
-    if (livro.id != undefined && livro.id != '' && livro.titulo != undefined && livro.titulo != '' && livro.num_paginas != undefined && livro.num_paginas != '' && livro.isbn != undefined && livro.isbn != '') {
+    if (livro.id != undefined && livro.id != '' && livro.titulo != undefined && livro.titulo != '' && livro.num_paginas != undefined && livro.num_paginas != '' && livro.isbn != undefined && livro.isbn != '' && livro.editora != undefined && livro.editora != '') {
       await LivrosService.createLivro(body)
         .then((response) => {
-          alert(response.data) 
+          alert(response.data)
           document.getElementById('formulario').reset
         })
         .catch(({ response: { data, status } }) => {
