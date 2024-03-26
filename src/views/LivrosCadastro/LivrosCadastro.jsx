@@ -1,17 +1,15 @@
 import { useState } from 'react'
-import { useSubmit } from 'react-router-dom'
 import Header from '../../components/Header/Header'
 import "./index.scss"
 import SubmenuLivros from '../../components/SubmenuLivros/SubmenuLivros'
 import { LivrosService } from '../../api/LivrosService'
+import { redirect } from 'react-router-dom'
 
 const LivrosCadastro = () => {
 
   const [livro, setLivro] = useState([])
 
   async function createLivro() {
-    const submit = useSubmit();
-
     const body = {
       id: Number(livro.id),
       titulo: livro.titulo,
@@ -24,10 +22,10 @@ const LivrosCadastro = () => {
 
     if (livro.id != undefined && livro.id != '' && livro.titulo != undefined && livro.titulo != '' && livro.num_paginas != undefined && livro.num_paginas != '' && livro.isbn != undefined && livro.isbn != '') {
       await LivrosService.createLivro(body)
-      await submit(null, { method: 'get', action: '/livros' })
         .then((response) => {
           alert(response.data)
           document.getElementById('formulario').reset
+          return redirect('/livros')
         })
         .catch(({ response: { data, status } }) => {
           alert(`${status} - ${data}`)
