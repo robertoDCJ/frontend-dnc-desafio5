@@ -15,7 +15,9 @@ const LivrosEdicao = () => {
     setLivro(data)
   }
 
-  async function editLivro(){
+  async function editLivro(event){
+    event.preventDefault()
+
     const body = {
         id:Number(livro.id),
         titulo:livro.titulo,
@@ -24,9 +26,9 @@ const LivrosEdicao = () => {
         editora: livro.editora
       }
 
-      //  && livro.editora !=undefined && livro.editora !=''
+      //  
 
-    if(livro.id!=undefined && livro.id!='' && livro.titulo!=undefined && livro.titulo!='' && livro.num_paginas!=undefined && livro.num_paginas!='' && livro.isbn !=undefined && livro.isbn !=''){
+    if(livro.id!=undefined && livro.id!='' && livro.titulo!=undefined && livro.titulo!='' && livro.num_paginas!=undefined && livro.num_paginas!='' && livro.isbn !=undefined && livro.isbn !='' && livro.editora !=undefined && livro.editora !=''){
       await LivrosService.updateLivro(Number(livro.id),body)
       .then(({data})=>{
         alert(data.mensagem)
@@ -71,8 +73,8 @@ const LivrosEdicao = () => {
               <input type="text"  required onChange={(event)=>{ setLivro({...livro, editora: event.target.value})}} value={livro.editora || ''}></input>
             </div> 
             <div className='form-group'>
-              <button onClick={()=>{
-              editLivro()
+              <button onClick={(event)=>{
+              editLivro(event)
             }}>Atualizar Livro</button>  
             </div>                   
           </form>
