@@ -3,6 +3,7 @@ import Header from '../../components/Header/Header'
 import "./index.scss"
 import SubmenuLivros from '../../components/SubmenuLivros/SubmenuLivros'
 import { LivrosService } from '../../api/LivrosService'
+import { redirect } from 'react-router-dom'
 
 const LivrosCadastro = () => {
 
@@ -26,6 +27,7 @@ const LivrosCadastro = () => {
         .then((response) => {
           alert(response.data)
           document.getElementById('formulario').reset
+          return redirect('/livros')
         })
         .catch(({ response: { data, status } }) => {
           alert(`${status} - ${data}`)
