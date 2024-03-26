@@ -3,9 +3,10 @@ import Header from '../../components/Header/Header'
 import "./index.scss"
 import SubmenuLivros from '../../components/SubmenuLivros/SubmenuLivros'
 import { LivrosService } from '../../api/LivrosService'
-import { redirect } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const LivrosCadastro = () => {
+  const navigate = useNavigate()
 
   const [livro, setLivro] = useState([])
 
@@ -31,7 +32,7 @@ const LivrosCadastro = () => {
             isbn: '',
             editora: ''
           })
-          // document.getElementById('formulario').reset
+          navigate('/livros')
         })
         .catch(({ response: { data, status } }) => {
           alert(`${status} - ${data}`)
