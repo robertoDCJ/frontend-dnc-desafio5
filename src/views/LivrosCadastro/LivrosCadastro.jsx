@@ -21,11 +21,11 @@ const LivrosCadastro = () => {
     //  && livro.editora !=undefined && livro.editora !='' Está fazendo a função não cadastrar o livro
 
     if (livro.id != undefined && livro.id != '' && livro.titulo != undefined && livro.titulo != '' && livro.num_paginas != undefined && livro.num_paginas != '' && livro.isbn != undefined && livro.isbn != '') {
+      redirect('/livros')
       await LivrosService.createLivro(body)
         .then((response) => {
           alert(response.data)
           document.getElementById('formulario').reset
-          return redirect('/livros')
         })
         .catch(({ response: { data, status } }) => {
           alert(`${status} - ${data}`)
@@ -63,7 +63,7 @@ const LivrosCadastro = () => {
               <input type="text" id='editora' required onChange={(event) => { setLivro({ ...livro, editora: event.target.value }) }}></input>
             </div>
             <div className='form-group'>
-              <button type='submit' onSubmit={() => {
+              <button type='submit' onClick={() => {
                 createLivro()
               }}>Cadastrar Livro</button>
             </div>
