@@ -25,9 +25,8 @@ const LivrosCadastro = () => {
     if (livro.id != undefined && livro.id != '' && livro.titulo != undefined && livro.titulo != '' && livro.num_paginas != undefined && livro.num_paginas != '' && livro.isbn != undefined && livro.isbn != '') {
       await LivrosService.createLivro(body)
         .then((response) => {
+          alert(response.data) 
           document.getElementById('formulario').reset
-          redirect('/livros')
-          return alert(response.data) 
         })
         .catch(({ response: { data, status } }) => {
           alert(`${status} - ${data}`)
