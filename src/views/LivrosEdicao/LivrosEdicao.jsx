@@ -2,11 +2,12 @@ import {useEffect , useState} from 'react'
 import Header from '../../components/Header/Header'
 import "./index.scss"
 import SubmenuLivros from '../../components/SubmenuLivros/SubmenuLivros'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { LivrosService } from '../../api/LivrosService'
 
 const LivrosEdicao = () => {  
   let {livroId} = useParams();
+  const navigate = useNavigate()
 
   const [livro, setLivro] = useState([])
 
@@ -31,8 +32,8 @@ const LivrosEdicao = () => {
     if(livro.id!=undefined && livro.id!='' && livro.titulo!=undefined && livro.titulo!='' && livro.num_paginas!=undefined && livro.num_paginas!='' && livro.isbn !=undefined && livro.isbn !='' && livro.editora !=undefined && livro.editora !=''){
       await LivrosService.updateLivro(Number(livro.id),body)
       .then(({data})=>{
-        console.log(data);
-        alert(data.mensagem)
+        alert(data)
+        navigate('/livros')
       })
       .catch(({response:{data,status}})=>{
         alert(`${status} - ${data}`)      

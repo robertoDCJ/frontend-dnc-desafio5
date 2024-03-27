@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "https://api-desafio5-dnc-five.vercel.app";
+// const BASE_URL = "https://api-desafio5-dnc-five.vercel.app";
+const BASE_URL = "http://localhost:5000";
 
 export class LivrosService{
     static getLivros(){
